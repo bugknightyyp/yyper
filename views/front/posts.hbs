@@ -1,0 +1,22 @@
+{{#extend 'stylesheets'}}
+
+{{/extend}}
+{{#extend 'scripts'}}
+
+{{/extend}}
+
+<section>
+	<ul class="posts">
+		{{#posts}}
+		<li>
+			<span class="glyphicon glyphicon-pencil"></span>
+			<dl>
+				<dt><a target="_blank" href="/post/{{postDate}}/{{postName}}">{{postTitle}}</a></dt>
+				<dd><span class="glyphicon glyphicon-calendar"></span>date: {{postDate}}</dd>
+				
+				<dd><span class="glyphicon glyphicon-tags"></span>tags: {{#tags}}<a target="_blank" href="/tags/{{this}}">{{this}}</a>{{/tags}}</dd>
+			</dl>
+		</li>
+		{{/posts}}
+	</ul>
+</section>

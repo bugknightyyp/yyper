@@ -1,0 +1,12 @@
+{
+  "category": "IT",
+  "tags": [
+    "nodejs",
+    "express",
+    "router"
+  ],
+  "postTitle": "为什么我们可以这样写express路由",
+  "postName": "express-router",
+  "postDate": "2014/01/16",
+  "_id": "52d79a6f713ac31c23d5cde8"
+}

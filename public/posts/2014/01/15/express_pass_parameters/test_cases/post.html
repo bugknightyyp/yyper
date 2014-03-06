@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="/css/normalize/2.1.3/normalize.css" rel="stylesheet" />
+  <link href="./main.css" rel="stylesheet" />
+  <title>post方式，点击提交测试</title>
+</head>
+<body>
+
+ <button id = "post">post方式，点击提交测试</button>  
+
+<script src="/js/common/seajs/2.1.1/sea.js"></script>
+<script>
+seajs.use(['jquery/1.10.2/jquery.min'],function($){
+
+
+$("#post").click(function(){
+  $.ajax({
+    type: "post",
+    url: "/test/express_pass_parameters/post",
+    data: {type: "post"},
+    dataType: "text"
+  })
+    .done(function(data){
+      alert(data);
+    })
+    .fail(function(err){
+       alert(err);
+    });
+  
+});
+
+
+});
+</script>
+</body>
+</html>

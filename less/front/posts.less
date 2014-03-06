@@ -1,0 +1,41 @@
+@import "elements";
+
+body{
+  background: #757D8A;
+}
+
+.posts{
+  list-style: none;
+  padding: 20px;
+}
+
+ul li{
+  position: relative;
+  padding: 10px 0 10px 20px;
+  margin: 0 0 20px 0;
+  background: rgba(51, 51, 51, 1);
+  color: #ccc;
+  #border .rounded(10px);
+  > .glyphicon {
+    position: absolute;
+    left: 8px;
+    top: -5px;
+    
+  }
+  > dl{
+    margin: 0 ;
+    dt{
+      line-height: 30px;
+    }
+    dd{
+      line-height: 24px;
+      > .glyphicon{
+        padding-right: 5px;
+      }
+      a{
+        padding-right: 10px;
+      }
+    }
+  }
+}
+

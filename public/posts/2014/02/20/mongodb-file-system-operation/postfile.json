@@ -1,0 +1,12 @@
+{
+  "category": "IT",
+  "tags": [
+    "mongodb",
+    "gridfs",
+    "gredStore"
+  ],
+  "postTitle": "mongodb文件系统操作",
+  "postName": "mongodb-file-system-operation",
+  "postDate": "2014/02/20",
+  "_id": "5305be50c9fe86441fd5a400"
+}
