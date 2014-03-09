@@ -21,7 +21,7 @@ marked.setOptions({
 var db = require('../db');
 //var dbURL = require('../models/db').dbURL;
 //var MongoClient = require('../models/db').MongoClient;
-var postDir = path.join(process.cwd(), 'public', 'posts');//存放博客的位置；
+var postDir = postConfig.postDir;//存放博客的位置；
 
 var Post = function(){};
 var prot = Post.prototype;

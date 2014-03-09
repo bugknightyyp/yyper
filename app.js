@@ -36,7 +36,7 @@ app.use(express.bodyParser({ keepExtensions: true, uploadDir: './public/images' 
 app.use(express.methodOverride());
 app.use(express.cookieParser());
 app.use(express.session({
-  secret: 'yyper-blog',
+  secret: 'yyper',
   cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
   store: sessionStore
 }));
@@ -46,10 +46,12 @@ app.use(app.router);
 
 
 //配置combo服务
-app.use( require('flex-combo')(__dirname, settings.flexCombo.urls, settings.flexCombo.options));
+//app.use( require('flex-combo')(__dirname, settings.flexCombo.urls, settings.flexCombo.options));
+app.get(/(\/js)|(\/css)/i, require('flex-combo')(__dirname, settings.flexCombo.urls, settings.flexCombo.options));
 
 //静态文件路径配置
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'posts')));
 
 //绑定路由
 routes(app);

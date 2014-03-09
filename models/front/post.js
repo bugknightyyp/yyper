@@ -19,7 +19,6 @@ marked.setOptions({
 
 
 var db = require('../db');
-var postDir = path.join(process.cwd(), 'public', 'posts');//存放博客的位置；
 
 var Post = function(){};
 var prot = Post.prototype;
@@ -41,7 +40,6 @@ Post.getPosts = function(callback){
 };
 
 Post.getOnePost = function(fileName, callback){// [/]2014/05/06/marked[/]
-  debugger;
   var fileName = fileName || "2014\\01\\09\\test-marked"; 
       fileName = fileName
         .replace(/([\\\/\+.])/gi, "\\$1");//转义特殊字符

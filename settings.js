@@ -1,4 +1,5 @@
-	
+
+var path = require('path');
 // db config
 exports.app = {
   port: 4000
@@ -7,11 +8,12 @@ exports.app = {
 exports.db = {
   host: "localhost",
   port: "27017",
-  dbName: "yyper-blog",
+  dbName: "yyper",
   options: {}
 }
 
 exports.post = {
+  postDir: path.join(process.cwd(),'posts'),
   configFileName: 'postfile.json',
 }
 
