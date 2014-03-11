@@ -13,16 +13,16 @@
     "hbs": "~2.4.0",
     "marked": "~0.3.0",
     "underscore": "~1.5.2",
-    "node-rd": "~0.0.1",
     "less-middleware": "~0.1.14",
     "highlight": "~0.2.3",
     "highlight.js": "~8.0.0",
-    "flex-combo": "~0.5.7"
+    "flex-combo": "~0.5.7",
+    "rd": "0.0.2"
   },
-	"devDependencies": {
+  "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-less": "~0.9.0",
     "grunt-contrib-jshint": "~0.8.0"
-	}
+  }
 }

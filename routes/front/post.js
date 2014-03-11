@@ -1,6 +1,5 @@
 
 var path = require('path');
-var rd = require('node-rd');
 var _ = require('underscore');
 var async = require('async');
 

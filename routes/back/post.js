@@ -1,6 +1,5 @@
 
 var path = require('path');
-var rd = require('node-rd');
 var _ = require('underscore');
 var async = require('async');
 
@@ -18,12 +17,13 @@ module.exports = function(app) {
       title: '主页',
     });
   });*/
-  app.get('/manage/post', function (req, res) {
-    Post.freshPostsToDB(function(err, num){
-        res.render('back/post', {
-          freshNum: num,
-          title: '任务管理',
-      });
+  app.post('/back/updatePostsToDb', function (req, res) {
+    Post.updatePostsToDb(function(err, num){
+       if (err) {
+			    res.json({ err: err });
+			 } else {
+					res.json({ num: num });
+			 }
     });
   });
 

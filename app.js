@@ -25,6 +25,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'hbs');
 app.engine('hbs', require('hbs').__express);
 hbs.registerPartials(__dirname + '/views/partials');
+
 //注册helper
 require('./views/helpers/common.js')(hbs);
 

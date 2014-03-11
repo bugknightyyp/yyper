@@ -1,7 +1,7 @@
 var path = require('path');
 var util = require('util');
 var fs = require('fs');
-var rd = require('node-rd');
+var rd = require('rd');
 var _ = require('underscore');
 var async = require('async');
 var marked = require('marked');
@@ -26,7 +26,7 @@ var postDir = postConfig.postDir;//存放博客的位置；
 var Post = function(){};
 var prot = Post.prototype;
 
-Post.freshPostsToDB = function(callback){
+Post.updatePostsToDb = function(callback){
   // var files = rd.readSync(postDir);
   var files = [];
   rd.eachSync(postDir, function (f, s) {

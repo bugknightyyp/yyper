@@ -1,0 +1,94 @@
+body {
+
+}
+.index-top {
+  height: 60px;
+  background-color: #f2f2f2;
+  border: 1px solid #cccccc;
+  background: #e8e8e8;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e2e2e2), color-stop(1, #ffffff));
+  background: -moz-linear-gradient(center bottom, #e2e2e2 0%, #ffffff 100%);
+  background: -ms-linear-gradient(bottom, #e2e2e2 0%, #ffffff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e2e2e2',GradientType=0);
+  -webkit-box-shadow: 0px 1px 3px 1px #e2e2e2;
+  -moz-box-shadow: 0px 1px 3px 1px #e2e2e2;
+  box-shadow: 0px 1px 3px 1px #e2e2e2;
+}
+/*******
+ footer
+********/
+.footer {
+  width: 100%;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+	color: #fff;
+  background: url("/img/bg/common/mu.jpg") left top repeat;
+}
+/**********
+ tree nemu
+**********/
+.tree-menu-wrap {
+  width: 20%;
+  min-width: 150px;
+  float: left;
+  min-height: 600px;
+}
+.tree-menu-wrap > ul {
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: 0 0 10px 2px #e2e2e2;
+  -moz-box-shadow: 0 0 10px 2px #e2e2e2;
+  box-shadow: 0 0 10px 2px #e2e2e2;
+}
+.tree-menu-wrap ul {
+  padding-left: 30px;
+}
+.tree-menu-wrap a {
+  display: block;
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  color: #777;
+}
+.tree-menu-wrap .fa {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 40px;
+  text-align: center;
+  font-size: 20px;
+}
+/***************
+ container
+****************/
+.content-wraper {
+  min-height: 600px;
+  border-left: 1px solid #ccc;
+  width: 80%;
+  margin-left: 20%;
+  overflow: hidden;
+}
+.content-wraper .content-head {
+  height: 60px;
+  line-height: 60px;
+  padding-left: 10px;
+  margin: 0;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #ccc;
+}
+.content-wraper .content-head .fa-thumb-tack {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  margin: 0 15px 0 5px;
+  color: #999;
+  font-size: 20px;
+}
+.content-wraper .content-head-title {
+  font-size: 18px;
+  vertical-align: middle;
+}
+.content-wraper .content {
+  padding: 10px;
+}

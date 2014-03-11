@@ -1,6 +1,9 @@
 
 module.exports = function(app){
   require('./front/post')(app);
+	
+	
+	require('./back/index')(app);
   require('./back/post')(app);
   
   //测试

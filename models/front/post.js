@@ -1,7 +1,6 @@
 var path = require('path');
 var util = require('util');
 var fs = require('fs');
-var rd = require('node-rd');
 var _ = require('underscore');
 var async = require('async');
 var marked = require('marked');
