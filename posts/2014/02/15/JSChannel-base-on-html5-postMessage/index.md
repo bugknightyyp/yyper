@@ -1,10 +1,10 @@
-#»ùÓÚhtml5 postMessageÊµÏÖ¿çÓòµÄ¿â£ºJSChannel
+#åŸºäºhtml5 postMessageå®ç°è·¨åŸŸçš„åº“ï¼šJSChannel
 
-##ChannelÌá¹©µÄ¾²Ì¬½Ó¿Ú:
+##Channelæä¾›çš„é™æ€æ¥å£:
 
-``build``: Ê¹ÓÃ Channel.build({options})£¬Éú³ÉÍ¨µÀ¶ÔÏó;
+``build``: ä½¿ç”¨ Channel.build({options})ï¼Œç”Ÿæˆé€šé“å¯¹è±¡;
 
-- `options.window`:ÓëÖ®Í¨ĞÅµÄwindow¶ÔÏó
+- `options.window`:ä¸ä¹‹é€šä¿¡çš„windowå¯¹è±¡
 - `options.origin`:
 - `options.scope`:
 - `options.debugOutput`:
@@ -12,7 +12,7 @@
 - `options.gotMessageObserver`:
 - `options.onReady`:
 
-##Channel¶ÔÏóÌá¹©µÄ¾²Ì¬½Ó¿Ú:
+##Channelå¯¹è±¡æä¾›çš„é™æ€æ¥å£:
 
 1 ``unbind``: channelInstance.unbind(method),
 2 ``bind``: channelInstance.unbind(method),
@@ -20,21 +20,21 @@
 4 ``notify``: channelInstance.unbind(method),
 5 ``destroy``: channelInstance.unbind(method),
 
-##Á÷³Ì
+##æµç¨‹
 
-ÎÒÇëÇó£¬¶Ô·½½ÓÊÜÇëÇóºó£¬´¦ÀíÂß¼­£¬Âß¼­´¦ÀíÍê£¬ÔÙ¸æËßÎÒ´¦Àí½á¹û£»
+æˆ‘è¯·æ±‚ï¼Œå¯¹æ–¹æ¥å—è¯·æ±‚åï¼Œå¤„ç†é€»è¾‘ï¼Œé€»è¾‘å¤„ç†å®Œï¼Œå†å‘Šè¯‰æˆ‘å¤„ç†ç»“æœï¼›
 
 ##Transactions
-¶ÔÓÚÒì²½µÄ´¦Àí£¬ĞèÒª½èÖúTransactionsÊµÀıÀ´Íê³É£¬ĞèÒª°Ñ¸ÃÊµÀı¸Ä±ä³ÉÒì²½×´Ì¬£¬ÇÒÒì²½´¦ÀíÍêºó¼¤»îÆäÍê³É·½·¨£¬À´·µ»Ø´¦Àí½á¹û
+å¯¹äºå¼‚æ­¥çš„å¤„ç†ï¼Œéœ€è¦å€ŸåŠ©Transactionså®ä¾‹æ¥å®Œæˆï¼Œéœ€è¦æŠŠè¯¥å®ä¾‹æ”¹å˜æˆå¼‚æ­¥çŠ¶æ€ï¼Œä¸”å¼‚æ­¥å¤„ç†å®Œåæ¿€æ´»å…¶å®Œæˆæ–¹æ³•ï¼Œæ¥è¿”å›å¤„ç†ç»“æœ
 
 ```
 chan.bind("twiddleThumbs", function(trans, params) {
   setTimeout(function() { 
     trans.complete("thumbs twiddled!"); 
-    /*ÊÖ¶¯¼¤»îcomplete·½·¨£¬¸æËß¶Ô·½´¦Àí½á¹û¡£
-    (chen.call·½·¨´«µÄsuccess·½·¨»áÖ´ĞĞ£¬²¢ÇÒcomplete·½·¨µÄ²ÎÊı´«¸øsuccess·½·¨)
+    /*æ‰‹åŠ¨æ¿€æ´»completeæ–¹æ³•ï¼Œå‘Šè¯‰å¯¹æ–¹å¤„ç†ç»“æœã€‚
+    (chen.callæ–¹æ³•ä¼ çš„successæ–¹æ³•ä¼šæ‰§è¡Œï¼Œå¹¶ä¸”completeæ–¹æ³•çš„å‚æ•°ä¼ ç»™successæ–¹æ³•)
     */
   }, 50);
-  trans.delayReturn(true);//ÊÖ¶¯½«transÉèÖÃ³ÉÒì²½×´Ì¬
+  trans.delayReturn(true);//æ‰‹åŠ¨å°†transè®¾ç½®æˆå¼‚æ­¥çŠ¶æ€
 });
 ```

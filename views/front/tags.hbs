@@ -1,6 +1,9 @@
- {{#extend 'stylesheets'}}
+{{#extend 'stylesheets'}}
 
 {{/extend}}
 {{#extend 'scripts'}}
 
 {{/extend}}
+{{#keyAndValue tags}}
+<a href="/tag/{{key}}">{{key}} <span class="badge">{{value}}</span></a>
+{{/keyAndValue}}

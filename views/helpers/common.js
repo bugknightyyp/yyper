@@ -37,8 +37,16 @@ module.exports = function(hbs){
     return value;
   });
   hbs.registerHelper('stringify', function(context, options){
-    debugger;
     return JSON.stringify(context);
+  });
+  
+   hbs.registerHelper('keyAndValue', function(context, options){
+    var str = '';
+    _.each(context, function(value, key, obj){
+      str += options.fn({key: key, value: value});
+    });
+    
+    return str;
   });
 }
 
