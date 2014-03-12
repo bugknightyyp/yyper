@@ -14,7 +14,7 @@
 
 {{/extend}}
 <div class="tags-wrap">
-  {{#keyAndValue tags}}
-  <a href="/tag/{{key}}" target="_blank">{{key}} <span class="badge">{{value}}</span></a>
-  {{/keyAndValue}}
+  {{#each posts}}
+  <a href="{{this.href}}" target="_blank">{{this.postName}}</a>
+  {{/each}}
 </div>

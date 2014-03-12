@@ -38,12 +38,38 @@ Tag.getTags = function(callback){
       });
     });
    
-  db.getWaterfallCollection("posts", tasks, function(err, docs){
+  db.getWaterfallCollection("posts", tasks, function(err, tags){
       //console.log(docs);
-      callback(err, docs);
+      callback(err, tags);
   });
 };
 
+Tag.getPostsByTag = function(tag, callback){
+  var posts = [];
+  var tasks = []
+    .concat(function(collection, callback){
+      var cursor = collection.find({tags:{"$in":[tag]}},{'postName': 1,'postDate': 1});
+      debugger;
+      cursor.each(function(err, item){
+        if (err) callback(err);
+        
+        if (item == null) {
+          callback(null, posts);
+        } else {
+         var temp = {};
+         temp.href = path.join('/post', item.postDate, item.postName).replace(/\\/ig, '/'); 
+         temp.postName = item.postName;
+         posts.push(temp);
+        }
+      
+      });
+    });
+   
+  db.getWaterfallCollection("posts", tasks, function(err, posts){
+      //console.log(docs);
+      callback(err, posts);
+  });
+};
 
 
 module.exports = Tag;

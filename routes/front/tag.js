@@ -23,7 +23,18 @@ module.exports = function(app) {
       });
    });   
   });
-
+  
+  app.get('/tag/:tag', function (req, res) {
+  debugger;
+   var tag = req.params.tag;
+   Tag.getPostsByTag(tag, function(err, posts){
+      res.render('front/postsByTag', {
+				layout: 'front/layout',
+        title: tag + '相关文章',
+        posts: posts
+      });
+   });   
+  });
   
   
   

@@ -40,9 +40,8 @@ Post.updatePostsToDb = function(callback){
         //console.log(path.relative(process.cwd(), f));
         configFile = path.join(path.join(f, '..'), postConfig.configFileName);
         setInfo = jf.readFileSync(configFile);
-        
         setInfo.postName = f.match(/([^\\\/]+)[\\\/][^\\\/]+$/i)[1]; 
-        setInfo.postDate = f.match(/\d{4}\\\d{2}\\\d{2}/ig)[0].replace(/\\/gi,"/");
+        setInfo.postDate = f.match(/\d{4}[\\\/]\d{2}[\\\/]\d{2}/ig)[0].replace(/\\/gi,"/");
         setInfo.configFile = path.relative(process.cwd(), configFile);
         setInfo.postFile = path.relative(process.cwd(), f);
         files.push(setInfo);
