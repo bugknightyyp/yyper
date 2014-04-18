@@ -1,3 +1,4 @@
+
 #为什么我们可以这样写express路由#
 
 可能你经常看到下面这样类似的express路由写法：
@@ -66,7 +67,7 @@ exports.pathRegexp = function(path, keys, sensitive, strict) {
 ```
 这儿我写了路由测试，可以输入不同情况的路由path和请求url进行匹配测试，方便理解上边的源代码注释：
 
-<iframe src="why-can-we-write-the-express-router-in-that-way/test_cases/router.html" style="border:none; width:500px; height: 200px;"></iframe>
+<iframe src="./test/router.html" style="border:none; width:500px; height: 200px;"></iframe>
 
 
 [0]:http://www.csser.com/board/4f77e6f996ca600f78000936#/post/4f77e94896ca600f780009f8  "express 路由实例"
