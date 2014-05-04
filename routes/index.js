@@ -9,5 +9,5 @@ module.exports = function(app){
   
   
   //测试
-  require('./test_case/2014-01')(app);
+  require('./test/2014-01')(app);
 };

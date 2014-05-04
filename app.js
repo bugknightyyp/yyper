@@ -2,17 +2,27 @@
 var path = require('path');
 var express = require('express');
 var app = express();
+
 var hbs = require('hbs');
 var lessMiddleware = require('less-middleware');
 var routes = require('./routes');
-var MongoStore = require('connect-mongo')(express);
+//var MongoStore = require('connect-mongo')(express);
 var settings = require('./settings');
 var dbURL = require('./models/db').dbURL;
-var MongoClient = require('./models/db').MongoClient;
+//var MongoClient = require('./models/db').MongoClient;
 
-var sessionStore = new MongoStore({
+
+//express middlware
+var bodyParser = require('body-parser');
+var expressSession= require('express-session');
+var cookieParser = require('cookie-parser');
+var favicon = require('static-favicon');
+var morgan  = require('morgan');
+var methodOverride = require('method-override');
+
+/*var sessionStore = new MongoStore({
   url: dbURL
-});
+});*/
 
 
 
@@ -30,24 +40,24 @@ hbs.registerPartials(__dirname + '/views/partials');
 require('./views/helpers/common.js')(hbs);
 
 //app.use(flash());
-app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
-app.use(express.logger('dev'));
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
+app.use(morgan('dev'));
 //app.use(express.logger({stream: accessLog}));
-app.use(express.bodyParser({ keepExtensions: true, uploadDir: './public/images' }));
-app.use(express.methodOverride());
-app.use(express.cookieParser());
-app.use(express.session({
+app.use(bodyParser({ keepExtensions: true, uploadDir: './public/images' }));
+
+app.use(methodOverride());
+app.use(cookieParser());
+/*app.use(expressSession({
   secret: 'yyper',
   cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
   store: sessionStore
-}));
-
-app.use(app.router);
+}));*/
+var router = express.Router();
+app.use(router);
 
 
 
 //配置combo服务
-//app.use( require('flex-combo')(__dirname, settings.flexCombo.urls, settings.flexCombo.options));
 app.get(/(\/js)|(\/css)/i, require('flex-combo')(__dirname, settings.flexCombo.urls, settings.flexCombo.options));
 
 //静态文件路径配置
