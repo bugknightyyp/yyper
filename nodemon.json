@@ -4,5 +4,5 @@
     ".git",
     "node_modules/**/node_modules"
   ],
-  "ext": "js json md hbs"
+  "ext": "js json md jade"
 }

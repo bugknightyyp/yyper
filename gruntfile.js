@@ -6,12 +6,11 @@ module.exports = function(grunt){
     less: {
       options:{
 				atBegin: true,
-        paths: ["less/namespace"]
+        paths: ["less/common/lesshat/3.0.0"]
       },
       css:{
         files: {
-          "public/css/front/index.css": "less/front/index.less",
-          "public/css/front/posts.css": "less/front/posts.less"
+          "public/css/front/index.css": "less/front/index.less"
         }
       }
       

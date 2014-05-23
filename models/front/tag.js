@@ -19,10 +19,10 @@ Tag.getTags = function(callback){
   var tasks = []
     .concat(function(collection, callback){
       var cursor = collection.find({},{'tags': 1,'_id': 0});
-      
+
       cursor.each(function(err, item){
         if (err) callback(err);
-        
+
         if (item == null) {
           callback(null, tags);
         } else {
@@ -34,13 +34,14 @@ Tag.getTags = function(callback){
             }
           });
         }
-      
+
       });
     });
-   
+
   db.getWaterfallCollection("posts", tasks, function(err, tags){
       //console.log(docs);
-      callback(err, tags);
+    callback(err, tags);
+
   });
 };
 
@@ -48,23 +49,23 @@ Tag.getPostsByTag = function(tag, callback){
   var posts = [];
   var tasks = []
     .concat(function(collection, callback){
-      var cursor = collection.find({tags:{"$in":[tag]}},{'postName': 1,'postDate': 1});
-      debugger;
+      var cursor = collection.find({tags:{"$in":[tag]}},{'postName': 1,'postDate': 1, 'postTitle': 1});
+
       cursor.each(function(err, item){
         if (err) callback(err);
-        
+
         if (item == null) {
           callback(null, posts);
         } else {
-         var temp = {};
-         temp.href = path.join('/post', item.postDate, item.postName).replace(/\\/ig, '/'); 
-         temp.postName = item.postName;
-         posts.push(temp);
+        //var temp = {};
+         //temp.href = path.join('/post', item.postDate, item.postName).replace(/\\/ig, '/');
+         //temp.postName = item.postName;
+         posts.push(item);
         }
-      
+
       });
     });
-   
+
   db.getWaterfallCollection("posts", tasks, function(err, posts){
       //console.log(docs);
       callback(err, posts);

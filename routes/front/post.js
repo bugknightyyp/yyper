@@ -4,21 +4,36 @@ var _ = require('underscore');
 var async = require('async');
 
 var Post = require('../../models/front/post');
+var Tag = require('../../models/front/tag');
 //Post.freshPostsCache();
 //Post.getPosts();
 //Post.getPostsProx("posts");
 
-
-
 module.exports = function(app) {
   app.get('/', function(req, res){
-    res.render('front/index', {
-     layout: 'front/layout',
-      title: '主页',
+    async.parallel({
+      tags: function(callback){
+        debugger;
+         Tag.getTags(function(err, tags){
+            callback(err, tags);
+          });
+      },
+      posts: function(callback){
+         Post.getPosts(function(err, posts){
+            callback(err, posts);
+          });
+
+      }
+    }, function(err, results){
+      res.render('front/index', {
+        title: '主页',
+        tags: results.tags,
+        posts: results.posts
+      });
     });
   });
-  
-  
+
+
   app.get('/posts', function (req, res) {
     var tasks = []
       .concat(function(callback){
@@ -32,12 +47,12 @@ module.exports = function(app) {
         title: 'post列表页',
         posts: docs
       });
-    });   
+    });
   });
-  
-  
+
+
   app.get('/post/:year(\\d+)/:month(\\d+)/:day(\\d+)/:name/', function (req, res){
-    
+
       var fileName = path.join(req.params.year, req.params.month, req.params.day, req.params.name);
       Post.getOnePost(fileName, function(err, htmlStr, obj){
       res.render('front/post', {
@@ -47,41 +62,41 @@ module.exports = function(app) {
         title: obj.postTitle,
         content: htmlStr
       });
-      }); 
-    
+      });
+
   });
   //如果访问的文章后边没有'/'，则加上，目的是为了方便测试demo的访问
   app.get('/post/:year(\\d+)/:month(\\d+)/:day(\\d+)/:name', function (req, res){
     res.redirect(req.url + '/');
   });
-  
-  
+
+
   //测试用例重定向
   app.get('/post/:year(\\d+)/:month(\\d+)/:day(\\d+)/:name([^\/]+)/test*', function (req, res){
     res.redirect(req.url.replace(/\/(post)/, function(post){
       return '';
     }));
-   
+
   });
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 };

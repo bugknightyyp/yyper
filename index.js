@@ -4,7 +4,6 @@ var express = require('express');
 var app = express();
 
 var hbs = require('hbs');
-var lessMiddleware = require('less-middleware');
 var routes = require('./routes');
 //var MongoStore = require('connect-mongo')(express);
 var settings = require('./settings');
@@ -32,12 +31,8 @@ app.set('port', process.env.PORT || settings.app.port);
 app.set('views', __dirname + '/views');
 
 //设置默认扩展名
-app.set('view engine', 'hbs');
-app.engine('hbs', require('hbs').__express);
-hbs.registerPartials(__dirname + '/views/partials');
-
-//注册helper
-require('./views/helpers/common.js')(hbs);
+app.set('view engine', 'jade');
+app.engine('jade', require('jade').__express);
 
 //app.use(flash());
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
