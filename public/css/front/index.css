@@ -1,3 +1,15 @@
 .post-tag {
-  margin: 0 20px 0 0;
+  float: left;
+  margin: 0 20px 10px 0;
+  padding: 5px;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 5px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 5px;
+  -moz-background-clip: padding;
+  border-radius: 5px;
+  background-clip: padding-box;
+}
+.post-tag .badge {
+  margin-left: 5px;
 }
