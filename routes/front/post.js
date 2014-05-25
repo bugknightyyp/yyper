@@ -52,9 +52,11 @@ module.exports = function(app) {
 
 
   app.get('/post/:year(\\d+)/:month(\\d+)/:day(\\d+)/:name/', function (req, res){
-
+ debugger;
       var fileName = path.join(req.params.year, req.params.month, req.params.day, req.params.name);
-      Post.getOnePost(fileName, function(err, htmlStr, obj){
+     
+      Post.getOnePostAndArchive(fileName, function(err, htmlStr, Archive, obj){
+      debugger;
       res.render('front/post', {
         layout: 'front/layout',
         pageName: "post_list",

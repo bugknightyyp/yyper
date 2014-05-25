@@ -50,6 +50,7 @@ Post.getOnePost = function(fileName, callback){// [/]2014/05/06/marked[/]
           });
       })
       .concat(function(obj, callback){
+       debugger;
         fs.readFile(path.join(process.cwd(), obj.postFile), {encoding: 'utf8'}, function(err, data){
            callback(err, data, obj)
         }); 
@@ -60,8 +61,72 @@ Post.getOnePost = function(fileName, callback){// [/]2014/05/06/marked[/]
           })
       });
   db.getWaterfallCollection("posts", tasks, function(err, htmlStr, obj){
+    debugger;
      callback(err, htmlStr, obj);
   });
+};
+Post.getOnePostAndArchive = function(fileName, callback){
+  async.waterfall([
+    function(callback){
+      Post.getOnePost(fileName, function(err, htmlStr, obj){
+      
+        callback(err, htmlStr, obj);
+      }); 
+  }, function(htmlStr, obj, callback){
+ 
+    var layers = null;
+    var cursor = 0;
+    var elPattern = /<h(\d)[^>]*?>(.+?)<\/h\1>/gi;
+
+
+    var temp = null;
+    var lastNode = null;
+    while(temp = elPattern.exec(htmlStr)){
+      handle();
+     
+    }
+
+    function handle(){
+      var info = {};
+      
+      temp[1] = parseInt(temp[1], 10);
+      
+      info.node = temp[0];
+      info.nodeHierarchy = temp[1];
+      info.nodeHtml = temp[2];
+       
+      if (temp[1] == 1) {
+        info.parentNode = null; 
+        layers = info;
+        lastNode = info;
+      } else if (lastNode.nodeHierarchy - temp[1]  == -1) {
+        if (typeof lastNode.subNode == 'undefined') {
+          lastNode.subNode = [];
+         
+        }
+        info.parentNode = lastNode;
+        lastNode.subNode.push(info);
+        lastNode = info;
+       
+        
+      } else if (lastNode.nodeHierarchy - temp[1]  == 0) {
+        lastNode.parentNode.subNode.push(info);
+        info.parentNode = lastNode.parentNode;
+        lastNode = info;
+      } else {
+        lastNode = layers;
+        handle();
+      }
+      
+    }
+    
+     callback(null, htmlStr, layers, obj);
+  }], 
+  function(err, htmlStr, layers, obj ){
+  debugger;
+    callback(null, htmlStr, layers, obj);
+  });
+
 };
 
 
