@@ -13,30 +13,29 @@ var Post = require('../../models/back/post');
 module.exports = function(app) {
   app.get('/back', function(req, res){
     res.render('back/index', {
-		      layout: 'back/layout',
           title: '任务管理',
     });
   });
-   
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 };

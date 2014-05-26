@@ -18,33 +18,34 @@ module.exports = function(app) {
     });
   });*/
   app.post('/back/updatePostsToDb', function (req, res) {
+    debugger;
     Post.updatePostsToDb(function(err, num){
        if (err) {
-			    res.json({ err: err });
+			    res.json({ err: err.name });
 			 } else {
 					res.json({ num: num });
 			 }
     });
   });
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 };

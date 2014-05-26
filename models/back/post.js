@@ -34,20 +34,24 @@ Post.updatePostsToDb = function(callback){
       //var patternConfigFile = new RegExp(postConfig.configFileName);
       var configFile = '';
       var setInfo = {};
-      
+
       if (patternMd.test(f)) {//只要 .md 文件
         //console.log('file: %s', f);
         //console.log(path.relative(process.cwd(), f));
         configFile = path.join(path.join(f, '..'), postConfig.configFileName);
-        setInfo = jf.readFileSync(configFile);
-        setInfo.postName = f.match(/([^\\\/]+)[\\\/][^\\\/]+$/i)[1]; 
-        setInfo.postDate = f.match(/\d{4}[\\\/]\d{2}[\\\/]\d{2}/ig)[0].replace(/\\/gi,"/");
-        setInfo.configFile = path.relative(process.cwd(), configFile);
-        setInfo.postFile = path.relative(process.cwd(), f);
+        try{
+          setInfo = jf.readFileSync(configFile);
+          setInfo.postName = f.match(/([^\\\/]+)[\\\/][^\\\/]+$/i)[1];
+          setInfo.postDate = f.match(/\d{4}[\\\/]\d{2}[\\\/]\d{2}/ig)[0].replace(/\\/gi,"/");
+          setInfo.configFile = path.relative(process.cwd(), configFile);
+          setInfo.postFile = path.relative(process.cwd(), f);
+        }catch(err){
+          callback(err);
+        }
         files.push(setInfo);
       }
     });
-  
+
   //找出所有的 .md 文件
   _.map(files, function(val, index, list){
     list[index] = function(collection, num, callback){
@@ -58,19 +62,19 @@ Post.updatePostsToDb = function(callback){
                 delete obj.configFile;
                 delete obj.postFile;
                 jf.writeFile(path.join(path.join(process.cwd(), configFile)), obj);
-              } 
-              callback(err, collection, num);    
+              }
+              callback(err, collection, num);
         });
     };
   });
-  
+
   //依次将文章存放目录存如 posts表中
   var tasks = []
-      /*.concat(function(collection, callback){
+      .concat(function(collection, callback){
           collection.remove(function(err, numberOfRemovedDocs){//先把之前的全部删除
                callback(err, collection);
            });
-      })*/
+      })
       .concat(function(collection, callback){
           callback(null, collection, 0);
       })
@@ -81,7 +85,7 @@ Post.updatePostsToDb = function(callback){
   db.getWaterfallCollection("posts", tasks, function(err, num){
       callback(err, num);
     });
-  
+
 };
 
 

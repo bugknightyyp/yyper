@@ -13,7 +13,6 @@ module.exports = function(app) {
   app.get('/', function(req, res){
     async.parallel({
       tags: function(callback){
-        debugger;
          Tag.getTags(function(err, tags){
             callback(err, tags);
           });
@@ -52,16 +51,15 @@ module.exports = function(app) {
 
 
   app.get('/post/:year(\\d+)/:month(\\d+)/:day(\\d+)/:name/', function (req, res){
- debugger;
       var fileName = path.join(req.params.year, req.params.month, req.params.day, req.params.name);
-     
-      Post.getOnePostAndArchive(fileName, function(err, htmlStr, Archive, obj){
-      debugger;
+
+      Post.getOnePostAndArchive(fileName, function(err, htmlStr, archive, obj){
       res.render('front/post', {
         layout: 'front/layout',
         pageName: "post_list",
         articleName: req.params.name,
         title: obj.postTitle,
+        archive: archive,
         content: htmlStr
       });
       });

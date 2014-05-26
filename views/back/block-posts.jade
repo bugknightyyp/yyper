@@ -1,0 +1,12 @@
+section
+  ul.posts
+   each post in posts
+    li
+     h3
+      a(href="/post/#{post.postDate}/#{post.postName}") #{post.postTitle}
+     div
+      |date:#{post.postDate}
+     div
+        |tags：
+        each tag in post.tags
+         a(href="/tags/#{tag}") #{tag}

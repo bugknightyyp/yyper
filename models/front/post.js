@@ -31,7 +31,7 @@ Post.getPosts = function(callback){
            callback(err, docs);
       });
     });
-   
+
   db.getWaterfallCollection("posts", tasks, function(err, docs){
       //console.log(docs);
       callback(err, docs);
@@ -39,7 +39,7 @@ Post.getPosts = function(callback){
 };
 
 Post.getOnePost = function(fileName, callback){// [/]2014/05/06/marked[/]
-  var fileName = fileName || "2014\\01\\09\\test-marked"; 
+  var fileName = fileName || "2014\\01\\09\\test-marked";
       fileName = fileName
         .replace(/([\\\/\+.])/gi, "\\$1");//转义特殊字符
   var pattern  = new RegExp(fileName, "i");
@@ -50,10 +50,9 @@ Post.getOnePost = function(fileName, callback){// [/]2014/05/06/marked[/]
           });
       })
       .concat(function(obj, callback){
-       debugger;
         fs.readFile(path.join(process.cwd(), obj.postFile), {encoding: 'utf8'}, function(err, data){
            callback(err, data, obj)
-        }); 
+        });
       })
       .concat(function(mdStr, obj, callback){
           marked(mdStr, function(err, htmlStr){
@@ -61,7 +60,6 @@ Post.getOnePost = function(fileName, callback){// [/]2014/05/06/marked[/]
           })
       });
   db.getWaterfallCollection("posts", tasks, function(err, htmlStr, obj){
-    debugger;
      callback(err, htmlStr, obj);
   });
 };
@@ -69,11 +67,16 @@ Post.getOnePostAndArchive = function(fileName, callback){
   async.waterfall([
     function(callback){
       Post.getOnePost(fileName, function(err, htmlStr, obj){
-      
+
         callback(err, htmlStr, obj);
-      }); 
-  }, function(htmlStr, obj, callback){
- 
+      });
+  }, function(htmlStr, obj, callback){//生成文章导航
+    String.prototype.sreplace = function(start, length, word) {
+      return this.replace(
+      new RegExp("^(.{" + start + "}).{" + length + "}"), "$1" + word);
+    };
+    
+    
     var layers = null;
     var cursor = 0;
     var elPattern = /<h(\d)[^>]*?>(.+?)<\/h\1>/gi;
@@ -83,48 +86,105 @@ Post.getOnePostAndArchive = function(fileName, callback){
     var lastNode = null;
     while(temp = elPattern.exec(htmlStr)){
       handle();
-     
+
     }
 
     function handle(){
       var info = {};
-      
+
       temp[1] = parseInt(temp[1], 10);
-      
+
       info.node = temp[0];
       info.nodeHierarchy = temp[1];
       info.nodeHtml = temp[2];
-       
+
+
       if (temp[1] == 1) {
-        info.parentNode = null; 
+        info.parentNode = null;
+        info.navNum = '';
         layers = info;
         lastNode = info;
       } else if (lastNode.nodeHierarchy - temp[1]  == -1) {
         if (typeof lastNode.subNode == 'undefined') {
           lastNode.subNode = [];
-         
+
         }
+
+
         info.parentNode = lastNode;
         lastNode.subNode.push(info);
+        info.navNum = lastNode.navNum + '-' + (lastNode.subNode.length);
+
         lastNode = info;
-       
-        
+debugger;
+        htmlStr.sreplace(temp.index, 0, '<a name="'+ decodeURIComponent( info.nodeHtml )+'"></a>')
+
       } else if (lastNode.nodeHierarchy - temp[1]  == 0) {
         lastNode.parentNode.subNode.push(info);
         info.parentNode = lastNode.parentNode;
+        info.navNum = info.parentNode.navNum + '-' + (info.parentNode.subNode.length);
         lastNode = info;
+         htmlStr.sreplace(temp.index, 0, '<a name="'+ decodeURIComponent( info.nodeHtml )+'"></a>')
       } else {
-        lastNode = layers;
+        lastNode = lastNode.parentNode;
         handle();
       }
+
+    }
+
+     callback(null, htmlStr, layers, obj);
+  }],
+  function(err, htmlStr, layers, obj ){
+
+    var rslt = '';
+
+    function render(data){
+      if (data.parentNode) {
+
+        var indexOf = data.parentNode.subNode.indexOf(data);
+        var len = data.parentNode.subNode.length;
+
+        if (indexOf == 0){
+         rslt += '<ul><li data-nav='+ data.navNum.slice(1) +'><a>'+ data.nodeHtml +'</a>'
+
+         if (data.subNode && data.subNode.length){
+            data.subNode.forEach(function(el,index, arr){
+            render(el);
+           });
+         }
+         rslt += len == 1?'</li></ul>' : '</li>';
+        } else if (indexOf < (len - 1)){
+
+          rslt += '<li><a>'+ data.nodeHtml +'</a>'
+
+          if (data.subNode && data.subNode.length){
+            data.subNode.forEach(function(el,index, arr){
+            render(el);
+           });
+          }
+
+          rslt += '</li>';
+        } else {
+          rslt += '<li><a>'+ data.nodeHtml +'</a>'
+
+          if (data.subNode && data.subNode.length){
+            data.subNode.forEach(function(el,index, arr){
+            render(el);
+           });
+          }
+
+          rslt += '</li></ul>';
+        }
+      } 
+      
       
     }
     
-     callback(null, htmlStr, layers, obj);
-  }], 
-  function(err, htmlStr, layers, obj ){
-  debugger;
-    callback(null, htmlStr, layers, obj);
+     layers.subNode && layers.subNode.forEach(function(el,index, arr){
+            render(el);
+     });
+
+    callback(null, htmlStr, rslt, obj);
   });
 
 };

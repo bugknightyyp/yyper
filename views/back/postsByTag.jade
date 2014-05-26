@@ -1,0 +1,17 @@
+extends layout
+
+block content
+ .container
+  .row
+   .col-md-4
+    | 哈哈哈哈哈
+   .col-md-8
+    section
+      ul.posts
+       each post in posts
+        li
+         h3
+          a(href="/post/#{post.postDate}/#{post.postName}") #{post.postTitle}
+         div
+          |date:#{post.postDate}
+
