@@ -71,17 +71,21 @@ Post.getOnePostAndArchive = function(fileName, callback){
         callback(err, htmlStr, obj);
       });
   }, function(htmlStr, obj, callback){//生成文章导航
-    String.prototype.sreplace = function(start, length, word) {
-      return this.replace(
-      new RegExp("^(.{" + start + "}).{" + length + "}"), "$1" + word);
+
+
+
+
+    var sreplace = function(str, start, length, word) {
+      return  str.replace(
+      new RegExp("^([\\s\\S]{" + start + "}).{" + length + "}"), "$1" + word);
     };
-    
-    
+
+
     var layers = null;
-    var cursor = 0;
+    var count = 0;
     var elPattern = /<h(\d)[^>]*?>(.+?)<\/h\1>/gi;
 
-
+    var repStr = '';
     var temp = null;
     var lastNode = null;
     while(temp = elPattern.exec(htmlStr)){
@@ -99,9 +103,10 @@ Post.getOnePostAndArchive = function(fileName, callback){
       info.nodeHtml = temp[2];
 
 
+
       if (temp[1] == 1) {
         info.parentNode = null;
-        info.navNum = '';
+        info.hierarchy = '';
         layers = info;
         lastNode = info;
       } else if (lastNode.nodeHierarchy - temp[1]  == -1) {
@@ -113,18 +118,23 @@ Post.getOnePostAndArchive = function(fileName, callback){
 
         info.parentNode = lastNode;
         lastNode.subNode.push(info);
-        info.navNum = lastNode.navNum + '-' + (lastNode.subNode.length);
-
+        info.hierarchy = lastNode.hierarchy + '-' + (lastNode.subNode.length);
+        info.index = ++count;
         lastNode = info;
-debugger;
-        htmlStr.sreplace(temp.index, 0, '<a name="'+ decodeURIComponent( info.nodeHtml )+'"></a>')
+
+        repStr = '<a name="'+ encodeURIComponent( info.nodeHtml + '-' + info.index )+'" hierarchy="'+ info.hierarchy.slice(1) +'"></a>';
+        htmlStr = sreplace(htmlStr, temp.index, 0, repStr);
+        elPattern.lastIndex += repStr.length;
 
       } else if (lastNode.nodeHierarchy - temp[1]  == 0) {
         lastNode.parentNode.subNode.push(info);
         info.parentNode = lastNode.parentNode;
-        info.navNum = info.parentNode.navNum + '-' + (info.parentNode.subNode.length);
+        info.hierarchy = info.parentNode.hierarchy + '-' + (info.parentNode.subNode.length);
+        info.index = ++count;
         lastNode = info;
-         htmlStr.sreplace(temp.index, 0, '<a name="'+ decodeURIComponent( info.nodeHtml )+'"></a>')
+        repStr = '<a name="'+ encodeURIComponent( info.nodeHtml + '-' + info.index )+'" hierarchy="'+ info.hierarchy.slice(1) +'"></a>';
+        htmlStr = sreplace(htmlStr, temp.index, 0, repStr);
+        elPattern.lastIndex += repStr.length;
       } else {
         lastNode = lastNode.parentNode;
         handle();
@@ -136,6 +146,7 @@ debugger;
   }],
   function(err, htmlStr, layers, obj ){
 
+
     var rslt = '';
 
     function render(data){
@@ -145,7 +156,7 @@ debugger;
         var len = data.parentNode.subNode.length;
 
         if (indexOf == 0){
-         rslt += '<ul><li data-nav='+ data.navNum.slice(1) +'><a>'+ data.nodeHtml +'</a>'
+         rslt += '<ul><li hierarchy='+ data.hierarchy.slice(1) +'><a href="#'+ encodeURIComponent(data.nodeHtml + '-' + data.index ) +'">'+ data.nodeHtml +'</a>'
 
          if (data.subNode && data.subNode.length){
             data.subNode.forEach(function(el,index, arr){
@@ -155,7 +166,7 @@ debugger;
          rslt += len == 1?'</li></ul>' : '</li>';
         } else if (indexOf < (len - 1)){
 
-          rslt += '<li><a>'+ data.nodeHtml +'</a>'
+          rslt += '<li hierarchy='+ data.hierarchy.slice(1) +'><a href="#'+ encodeURIComponent(data.nodeHtml + '-' + data.index ) +'">'+ data.nodeHtml +'</a>'
 
           if (data.subNode && data.subNode.length){
             data.subNode.forEach(function(el,index, arr){
@@ -165,7 +176,7 @@ debugger;
 
           rslt += '</li>';
         } else {
-          rslt += '<li><a>'+ data.nodeHtml +'</a>'
+          rslt += '<li hierarchy='+ data.hierarchy.slice(1) +'><a href="#'+ encodeURIComponent(data.nodeHtml + '-' + data.index ) +'">'+ data.nodeHtml +'</a>'
 
           if (data.subNode && data.subNode.length){
             data.subNode.forEach(function(el,index, arr){
@@ -175,11 +186,11 @@ debugger;
 
           rslt += '</li></ul>';
         }
-      } 
-      
-      
+      }
+
+
     }
-    
+
      layers.subNode && layers.subNode.forEach(function(el,index, arr){
             render(el);
      });

@@ -4,10 +4,6 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-define('bootstrap/3.1.1/bootstrap.cmd',['jquery/1.11.0/jquery.cmd.min'],function(require, exports, module){
- 
- var jQuery = require('jquery/1.11.0/jquery.cmd.min');
- 
 if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript requires jQuery') }
 
 /* ========================================================================
@@ -1953,5 +1949,3 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   })
 
 }(jQuery);
-
-});

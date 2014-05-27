@@ -13,3 +13,13 @@
 .post-tag .badge {
   margin-left: 5px;
 }
+.archive {
+  position: fixed;
+  top: 80px;
+}
+.archive ul {
+  list-style: none;
+}
+.archive ul ul {
+  display: none;
+}
