@@ -1,3 +1,6 @@
+ul {
+  list-style: none;
+}
 .post-tag {
   float: left;
   margin: 0 20px 10px 0;
@@ -17,9 +20,8 @@
   position: fixed;
   top: 80px;
 }
-.archive ul {
-  list-style: none;
-}
-.archive ul ul {
-  display: none;
+.page-footer {
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
 }

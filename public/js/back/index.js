@@ -1,5 +1,5 @@
 define('back/index', function(require, exprots, module){
-  var $ = require('jquery/1.11.0/jquery.cmd.min');
+  var $ = require('jquery');
 
 	$("#posts-update-db").click(function(){
 	   $.post('/back/updatePostsToDb', function(data){
