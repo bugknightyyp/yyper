@@ -1,4 +1,4 @@
-ul {
+ul.posts {
   list-style: none;
 }
 .post-tag {
@@ -24,4 +24,8 @@ ul {
   height: 100px;
   line-height: 100px;
   text-align: center;
+}
+/** artical详情页 **/
+.artical > p {
+  text-indent: 2em;
 }
