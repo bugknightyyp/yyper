@@ -141,7 +141,8 @@ Post.getOnePostAndArchive = function(fileName, callback){
       }
 
     }
-
+    
+    layers.nodeNum = count;
      callback(null, htmlStr, layers, obj);
   }],
   function(err, htmlStr, layers, obj ){
@@ -191,7 +192,7 @@ Post.getOnePostAndArchive = function(fileName, callback){
 
     }
 
-     layers.subNode && layers.subNode.forEach(function(el,index, arr){
+     layers.subNode && layers.nodeNum > 1 && layers.subNode.forEach(function(el,index, arr){
             render(el);
      });
 

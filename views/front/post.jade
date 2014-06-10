@@ -1,9 +1,13 @@
 extends layout
 
 block content
- .container
+ .container-fluid
   .row
-   .col-md-4
-    div(class="archive"  id="archive")!= archive
-   .col-md-8
-    artical(class="artical")!= content
+    if archive
+     .col-md-4
+      div(class="archive"  id="archive")!= archive
+     .col-md-8
+      artical(class="artical")!= content
+    else
+      .col-md-12
+        artical(class="artical")!= content
