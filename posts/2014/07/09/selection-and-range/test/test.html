@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="/css/common/bootstrap/3.1.1/bootstrap.min.css" rel="stylesheet" />
+  <title>test</title>
+</head>
+<body>
+<div id="test" contenteditable><span>000</span><span></span><span>123:</span>&nbsp;</div>
+
+
+<script>
+function print(sel){
+	console.log('***************************************');
+
+	console.log("selection.anchorNode：" + sel.anchorNode);
+	console.log("selection.anchorOffset：" + sel.anchorOffset);
+	console.log("selection.focusNode：" + sel.focusNode);
+	console.log("selection.focusOffset：" + sel.focusOffset);
+	console.log("selection.isCollapsed：" + sel.isCollapsed);
+	console.log("selection.rangeCount：" + sel.rangeCount);
+
+	console.log('***************************************');
+}
+
+
+var el = document.getElementById("test");
+
+var  sel = window.getSelection();
+
+sel.selectAllChildren(el)
+sel.collapseToEnd()
+print(sel);
+
+
+</script>
+</body>
+</html>
