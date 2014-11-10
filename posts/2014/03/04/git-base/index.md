@@ -1,4 +1,13 @@
 #git基础
+##常用操作
+`git add -A` #stages All
+
+`git add .` #stages new and modified, without deleted
+
+`git add -u` #stages modified and deleted, without new
+
+**`git add -A` is equivalent to `git add .; git add -u`**
+
 
 ##基础思想
 
