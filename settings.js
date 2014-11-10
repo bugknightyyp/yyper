@@ -19,11 +19,11 @@ exports.post = {
 
 exports.session = {
   key: "",
-  secret: "" 
+  secret: ""
 }
 
 exports.cookie = {
-  
+
 }
 
 exports.flexCombo = {
@@ -33,6 +33,6 @@ exports.flexCombo = {
   },
   options:{
     "charset": "utf-8",
-    "supportedFile": "\\.js|\\.css"
+    "supportedFile": "\\.js$|\\.css$"
   }
 }

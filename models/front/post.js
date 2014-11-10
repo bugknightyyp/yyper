@@ -90,7 +90,6 @@ Post.getOnePostAndArchive = function(fileName, callback){
     var lastNode = null;
     while(temp = elPattern.exec(htmlStr)){
       handle();
-
     }
 
     function handle(){
@@ -100,9 +99,7 @@ Post.getOnePostAndArchive = function(fileName, callback){
 
       info.node = temp[0];
       info.nodeHierarchy = temp[1];
-      info.nodeHtml = temp[2];
-
-
+      info.nodeHtml = temp[2].slice(-1) == ':'? temp[2].slice(0, -1) : temp[2];
 
       if (temp[1] == 1) {
         info.parentNode = null;
@@ -114,8 +111,6 @@ Post.getOnePostAndArchive = function(fileName, callback){
           lastNode.subNode = [];
 
         }
-
-
         info.parentNode = lastNode;
         lastNode.subNode.push(info);
         info.hierarchy = lastNode.hierarchy + '-' + (lastNode.subNode.length);

@@ -24,7 +24,6 @@ var methodOverride = require('method-override');
 });*/
 
 
-
 //端口设置
 app.set('port', process.env.PORT || settings.app.port);
 //配置模板路径及模板引擎
@@ -33,6 +32,9 @@ app.set('views', __dirname + '/views');
 //设置默认扩展名
 app.set('view engine', 'jade');
 app.engine('jade', require('jade').__express);
+
+//设置路由
+app.enable('strict routing');
 
 //app.use(flash());
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
@@ -47,8 +49,7 @@ app.use(cookieParser());
   cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
   store: sessionStore
 }));*/
-var router = express.Router();
-app.use(router);
+
 
 
 

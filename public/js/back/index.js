@@ -1,4 +1,4 @@
-define('back/index', function(require, exprots, module){
+define('projectBase/index', function(require, exprots, module){
   var $ = require('jquery');
 
 	$("#posts-update-db").click(function(){
@@ -12,8 +12,6 @@ define('back/index', function(require, exprots, module){
 
 	});
 
-
-
 });
 
-requirejs(['back/index']);
+

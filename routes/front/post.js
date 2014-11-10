@@ -48,8 +48,9 @@ module.exports = function(app) {
       });
     });
   });
-
-
+	
+	
+	
   app.get('/post/:year(\\d+)/:month(\\d+)/:day(\\d+)/:name/', function (req, res){
       var fileName = path.join(req.params.year, req.params.month, req.params.day, req.params.name);
 
@@ -65,11 +66,15 @@ module.exports = function(app) {
       });
 
   });
-  //如果访问的文章后边没有'/'，则加上，目的是为了方便测试demo的访问
+  
+   //如果访问的文章后边没有'/'，则加上，目的是为了方便测试demo的访问
   app.get('/post/:year(\\d+)/:month(\\d+)/:day(\\d+)/:name', function (req, res){
-    res.redirect(req.url + '/');
+	  if (!/.+?\/$/.test(req.url)) {
+		  res.redirect(req.url + '/');
+		}  
   });
-
+ 
+  
 
   //测试用例重定向
   app.get('/post/:year(\\d+)/:month(\\d+)/:day(\\d+)/:name([^\/]+)/test*', function (req, res){
