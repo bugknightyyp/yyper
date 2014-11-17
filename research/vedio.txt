@@ -1,0 +1,17 @@
+只有支持HTML5且使用H.264或WebM格式的浏览器可以直接播放视频
+
+增加了一个480x360像素分辨率的高质量模式；同年11月，增加了720p的高清晰度视频支持模式，同时播放器也能从4:3屏幕大小改为16:9的宽屏屏幕。有了这项新功能，YouTube的开始改使用H.264/MPEG-4 AVC作为其默认的视频编解码器。2009年11月，又加入了1080pHD的视频支持模式。2010年7月，YouTube宣布项目推出了一系列的视频4k的格式，且预计其中有一模式的视频分辨率高达4096x3072像素。
+
+目前YouTube视频可在一个范围内选择所想要的像素水平，分别以标准质量（SQ），高质量（HQ）和高清晰度（HD）来取代之前以数值代表垂直分辨率的方法。而当前以H.264/MPEG-4 AVC作为默认的视频编解码器、音频则改为AAC格式。
+
+2013年10月起4k改采Adaptive bitrate streaming技术。
+
+http://zh.wikipedia.org/wiki/YouTube
+
+HTML5支持MPEG-4、H.264、Ogg Theora及WebM 影音编码
+
+p2p
+
+http://www.tmtpost.com/author/%E4%B8%80%E5%B8%85
+
+说起MP3的播放，使用最广泛的莫过于Winamp了。对于 MP3流媒体服务这个领域，Winamp的开发者Nullsoft公司当然不会放弃，专门发布了面向MP3的流服务器SHOUTcast Server。虽然它的功能没有Windows Media Server和Real Server强大，但它不仅对硬件的要求极低，更关键的是完全免费，使用起来没有后顾之忧。另外你还需要下载一个名为SHOUTcast DSP Plug-in的插件，只有安装了这个不起眼的插件，Winamp才能支持流媒体服务。
