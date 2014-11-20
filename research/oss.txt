@@ -1,0 +1,15 @@
+http://bbs.aliyun.com/read/153474.html?spm=5176.7114037.1996646101.46.yYVvil&pos=16
+（亲宝宝案例）
+
+初化 DB 
+  可以使用第三方MYSQL工具直接访问，如SQLyog
+配置云服务器生产环境
+  nginx tomcat memcache radis
+  可以使用putty登录云服务器
+配置云盾、云监控
+配置负载均衡SLB
+测试&上线
+
+http://bbs.aliyun.com/read/91679.html?spm=5176.7114037.1996646101.34.WGlhdx&pos=12（用云存储和CDN轻松搞定网站图片）
+
+OSSforDrupal
