@@ -4,7 +4,10 @@
     "mobile",
     "gesture-recognizer",
     "event",
-	"hammerjs"
+    "hammerjs"
   ],
-  "postTitle": "手势识别"
+  "postTitle": "手势识别",
+  "postName": "gesture-recognizer",
+  "postDate": "2014/11/14",
+  "_id": "54882a203928b3782a3546e4"
 }

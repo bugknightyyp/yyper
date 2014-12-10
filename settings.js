@@ -28,8 +28,10 @@ exports.cookie = {
 
 exports.flexCombo = {
   urls:{
-    "/css": "./public/css",
-    "/js": "./public/js"
+    "\\css": __dirname +"/public/css",
+    "\\js": __dirname +"/public/js",
+    "/css": __dirname +"/public/css",
+    "/js": __dirname +"/public/js"
   },
   options:{
     "charset": "utf-8",

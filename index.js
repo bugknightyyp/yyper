@@ -37,7 +37,7 @@ app.engine('jade', require('jade').__express);
 app.enable('strict routing');
 
 //app.use(flash());
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(morgan('dev'));
 //app.use(express.logger({stream: accessLog}));
 app.use(bodyParser({ keepExtensions: true, uploadDir: './public/images' }));
