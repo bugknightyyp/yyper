@@ -27,14 +27,15 @@ exports.cookie = {
 }
 
 exports.flexCombo = {
-  urls:{
-    "\\css": __dirname +"/public/css",
-    "\\js": __dirname +"/public/js",
-    "/css": __dirname +"/public/css",
-    "/js": __dirname +"/public/js"
-  },
   options:{
+    rootdir: path.join(__dirname, 'public'),
+    filter: {
+      "[\\.-]min\\.js$": ".min.js",
+      "[\\.-]min\\.css$": ".min.css"
+    },
+    supportedFIle: '\\.map',
     "charset": "utf-8",
-    "supportedFile": "\\.js$|\\.css$"
+    urls:{
+    }
   }
 }

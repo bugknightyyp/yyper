@@ -20,7 +20,7 @@
     "body-parser": "*",
     "method-override": "*",
     "express-session": "*",
-    "static-favicon": "*",
+    "serve-favicon": "*",
     "morgan": "*",
     "cookie-parser": "*",
     "jade": "*"

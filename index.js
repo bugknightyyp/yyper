@@ -15,7 +15,7 @@ var dbURL = require('./models/db').dbURL;
 var bodyParser = require('body-parser');
 var expressSession= require('express-session');
 var cookieParser = require('cookie-parser');
-var favicon = require('static-favicon');
+var favicon = require('serve-favicon');
 var morgan  = require('morgan');
 var methodOverride = require('method-override');
 
@@ -54,7 +54,8 @@ app.use(cookieParser());
 
 
 //配置combo服务
-app.get(/(\/js)|(\/css)/i, require('flex-combo')(__dirname, settings.flexCombo.urls, settings.flexCombo.options));
+app.get(/(\/js)|(\/css)/i, 
+	require('flex-combo')(settings.flexCombo.options, __dirname));
 
 //静态文件路径配置
 app.use(express.static(path.join(__dirname, 'public')));
