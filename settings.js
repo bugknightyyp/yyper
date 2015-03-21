@@ -33,7 +33,7 @@ exports.flexCombo = {
       "[\\.-]min\\.js$": ".min.js",
       "[\\.-]min\\.css$": ".min.css"
     },
-    supportedFIle: '\\.map',
+    //supportedFIle: '\\.map',
     "charset": "utf-8",
     urls:{
     }
