@@ -1,0 +1,11 @@
+{
+  "category": "IT",
+  "tags": [
+    "angularjs",
+    "mock"
+  ],
+  "postTitle": "在应用angularjs应用里模拟服务端请求的依赖",
+  "postName": "Mocking-Server-Dependencies-in-JavaScript-and-AngularJS-Applications",
+  "postDate": "2015/03/22",
+  "_id": "550e79e97350a37c1721b6ea"
+}
