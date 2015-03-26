@@ -1336,7 +1336,7 @@
   // an AMD load request. Those cases could generate an error when an
   // anonymous define() is called outside of a loader request.
   if (typeof define === 'function') {
-    define('underscore/1.6.0/underscore.cmd.min', [], function() {
+    define('underscore/1.6.0/underscore.cmd', [], function() {
       return _;
     });
   }

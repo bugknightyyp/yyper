@@ -1,10 +1,12 @@
 footer.page-footer.
   Copyright © 2013-2014 yyper
   粤ICP备14006522号
-script(src="/js/common/??seajs/2.3.0/sea.min.js,seajs-combo/1.0.1/seajs-combo.min.js,jquery/1.11.1/jquery.cmd.min.js,underscore/1.6.0/underscore.cmd.min.js")
-script(type="text/javascript").
-  seajs.config({
-    alias: {
-      'jquery': 'jquery/1.11.1/jquery.cmd.min'
-    }
-  })
+
+//
+  script(src="/js/common/??seajs/2.3.0/sea.min.js,seajs-combo/1.0.1/seajs-combo.min.js,jquery/1.11.1/jquery.cmd.min.js,underscore/1.6.0/underscore.cmd.min.js")
+
+
+script(src="/js/common/seajs/3.0.0/sea.js" id="seajsnode")
+script(src="/js/common/seajs-combo/1.0.1/seajs-combo.js")
+script(src="/js/common/jquery/1.11.1/jquery.cmd.js")
+script(src="/js/common/underscore/1.6.0/underscore.cmd.js")

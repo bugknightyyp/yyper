@@ -9,11 +9,14 @@ block content
 append footer
   script(type="text/javascript").
     seajs.config({
-        base: '/js/common',
-        paths: {
-          projectBase: '/js/back/'
+      base: '/js/common',
+      paths: {
+        projectBase: '/js/back/'
+      },
+      alias: {
+        'jquery': 'jquery/1.11.1/jquery.cmd'
       }
     });
-    seajs.use(['projectBase/index'], function(){
+    seajs.use(['jquery/1.11.1/jquery.cmd', 'underscore/1.6.0/underscore.cmd', 'projectBase/index'], function(){
       
     });

@@ -315,5 +315,5 @@ if (data.test) {
   test.paths2hash = paths2hash
 }
 
-define("seajs/seajs-combo/1.0.1/seajs-combo-debug", [], {});
+define("seajs-combo/1.0.1/seajs-combo", [], {});
 })();
