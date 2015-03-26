@@ -55,15 +55,20 @@ Post.updatePostsToDb = function(callback){
   //找出所有的 .md 文件
   _.map(files, function(val, index, list){
     list[index] = function(collection, num, callback){
-        collection.save(val,function (err, obj) { //obj是插入的对象
-              num ++;
-              if(_.isObject(obj)){
-                var configFile = obj.configFile;
-                delete obj.configFile;
-                delete obj.postFile;
-                jf.writeFile(path.join(path.join(process.cwd(), configFile)), obj);
-              }
-              callback(err, collection, num);
+        collection.save(val, {w: 1}, function (err, obj) { //obj是插入的对象
+            //"{"ok":1,"nModified":0,"n":1,"upserted":[{"index":0,"_id":"52d79a6f713ac31c23d5cde7"}]}"
+            if (obj.result.ok == 1 && obj.result.n == 1) {
+              _.extend(val, obj.result.upserted[0]._id)
+            }
+            num ++;
+            if(_.isObject(obj)){
+              var configFile = val.configFile;
+              delete val.configFile;
+              delete val.postFile;
+              jf.writeFile(path.join(path.join(process.cwd(), configFile)), val);
+            }
+
+            callback(err, collection, num);
         });
     };
   });
