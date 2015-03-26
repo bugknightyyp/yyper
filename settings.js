@@ -1,32 +1,46 @@
 
 var path = require('path');
+
+var dev = {}
+var pro = {}
+if (process.env.NODE_ENV == 'development'){
+  module.exports = dev
+} else {
+  module.exports = pro
+}
+
 // db config
-exports.app = {
+pro.app = {
+  port: 80
+}
+
+dev.app = {
   port: 4000
 }
 
-exports.db = {
+
+pro.db = dev.db = {
   host: "localhost",
   port: "27017",
   dbName: "yyper",
   options: {}
 }
 
-exports.post = {
+pro.post = dev.post = {
   postDir: path.join(process.cwd(),'posts'),
   configFileName: 'postfile.json',
 }
 
-exports.session = {
+pro.session = dev.session = {
   key: "",
   secret: ""
 }
 
-exports.cookie = {
+pro.cookie =  dev.cookie = {
 
 }
 
-exports.flexCombo = {
+pro.flexCombo = dev.flexCombo = {
   options:{
     rootdir: path.join(__dirname, 'public'),
     filter: {
