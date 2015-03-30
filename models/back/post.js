@@ -58,7 +58,10 @@ Post.updatePostsToDb = function(callback){
         collection.save(val, {w: 1}, function (err, obj) { //obj是插入的对象
             //"{"ok":1,"nModified":0,"n":1,"upserted":[{"index":0,"_id":"52d79a6f713ac31c23d5cde7"}]}"
             if (obj.result.ok == 1 && obj.result.n == 1) {
-              _.extend(val, obj.result.upserted[0]._id)
+              try{
+                val._id = obj.result.upserted[0]._id
+              } catch (err) {}
+              
             }
             num ++;
             if(_.isObject(obj)){
