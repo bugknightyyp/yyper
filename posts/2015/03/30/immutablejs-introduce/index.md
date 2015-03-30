@@ -67,7 +67,7 @@ map1.get('b'); // 2
 map2.get('b'); // 50
 ```
 
-#The case for Immutability 不变性的情况
+##The case for Immutability 不变性的情况
 
 开发应用的很多难点是在跟踪状态的变化和维持状态。使用不可变的数据开发，鼓励你差异化地思考应用里的数据怎样流通。
 
@@ -248,11 +248,11 @@ assert(Immutable.is(map1, map2) === true);
 
 ##Batching Mutations
 
-    If a tree falls in the woods, does it make a sound?
+> If a tree falls in the woods, does it make a sound?
 
-    If a pure function mutates some local data in order to produce an immutable return value, is that ok?
+> If a pure function mutates some local data in order to produce an immutable return value, is that ok?
 
-    — Rich Hickey, Clojure
+> > — Rich Hickey, Clojure
 
 应用*mutation*来创建一个新的*immutable*对象，会导致一些性能上的开销。如果你需要在返回之前需要一系列改变，*Immutable*能够让你创建一个暂时的一个*collections*的*mutable*副本，并且通过使用`withMutations`做一些行为上的改变。事实上，这就是*immutable*怎样对自己应用复杂的改变。
 
