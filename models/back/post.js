@@ -64,12 +64,6 @@ Post.updatePostsToDb = function(callback){
               
             }
             num ++;
-            if(_.isObject(obj)){
-              var configFile = val.configFile;
-              delete val.configFile;
-              delete val.postFile;
-              jf.writeFile(path.join(path.join(process.cwd(), configFile)), val);
-            }
 
             callback(err, collection, num);
         });
