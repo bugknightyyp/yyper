@@ -4,9 +4,9 @@
 
 ##子模块操作
 
-**添加依赖模块命令:**`git submodule add [--name <name>] [url] [path]`
+**添加依赖模块命令:** `git submodule add [--name <name>] [url] [path]`
 
-- --name <module name>:子模块起的名字，如果没有，则名字就是path值。 
+- --name <module name>:子模块起的名字，如果没有，则名字就是path值
 
 - url: 模块的仓库地址，git 可以clone的地址。eg:`git://github.com/bugknightyyp/city-picker.git`
 
@@ -25,10 +25,12 @@
 
 **查看子模块状态命令:**`git submodule status`
 列出子模块的信息（commitID/路径）。eg：
-```
--61aa8ac17dcd8bcabf9d3961969ebfe2ddeab3bf vendor/yuidoc-bootstrap
- 61aa8ac17dcd8bcabf9d3961969ebfe2ddeab3bf vendor/seajs
-```
+
+
+> 61aa8ac17dcd8bcabf9d3961969ebfe2ddeab3bf vendor/yuidoc-bootstrap
+
+> 61aa8ac17dcd8bcabf9d3961969ebfe2ddeab3bf vendor/seajs
+
 有没有前缀`-`的区别是，子模块有没有安装，如果有`-`表示没有安装，否则已安装。
 
 **初始化子模块命令:**`git submodule init`
@@ -37,7 +39,7 @@
 
 **更新子模块命令:**`git submodule update`
 
-更新每一个注册的模块，没注册的，不会更新，
+更新每一个注册的模块，没注册的，不会更新
 
 ##参考
 - [git-submodule(1) Manual Page ][0]
