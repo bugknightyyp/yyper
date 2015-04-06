@@ -67,7 +67,7 @@ Post.getOnePostAndArchive = function(fileName, callback){
   async.waterfall([
     function(callback){
       Post.getOnePost(fileName, function(err, htmlStr, obj){
-
+        
         callback(err, htmlStr, obj);
       });
   }, function(htmlStr, obj, callback){//生成文章导航
